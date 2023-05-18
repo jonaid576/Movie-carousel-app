@@ -65,6 +65,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 0.4em;
 }
 
 /* navbar-mobile */
@@ -74,6 +75,7 @@ a {
   background: none;
   appearance: none;
   margin-top: -0.8em;
+  cursor: pointer;
 }
 
 .bar {
@@ -82,6 +84,65 @@ a {
   background-color: white;
   margin-bottom: 3px;
   border-radius: 5px;
+}
+
+.cross-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  appearance: none;
+  cursor: pointer;
+}
+
+.x-mark {
+  font-size: 2rem;
+  color: white;
+}
+
+.x-mark:hover {
+  color: var(--blueHeader);
+}
+
+.mobile-nav {
+  position: fixed;
+  padding: 2em;
+  background-color: var(--blackHeader);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+  left: 200%;
+  transition: all ease-in-out 0.3s;
+}
+
+.mobile-nav.is-active {
+  left: 0;
+}
+
+.mobile-nav > ul {
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-nav > ul > li {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+
+  text-align: center;
+}
+
+.mobile-nav > ul > li:hover {
+  color: var(--blueHeader);
+  cursor: pointer;
 }
 
 /* header-form */
@@ -139,6 +200,7 @@ a {
   justify-content: space-between;
   position: absolute;
   /* background-color: magenta; */
+  max-width: 300px;
   width: 100%;
   top: 300px;
 }
@@ -229,6 +291,8 @@ a {
   justify-content: center;
   box-shadow: 0 0 5px black;
   margin: 0 1em;
+  border-radius: 10px;
+  padding: 0.5em 0 2em 0;
 }
 
 .now-playing-h1 {
@@ -257,4 +321,54 @@ a {
   margin: 0;
   text-align: center;
   font-size: 0.7rem;
+}
+
+/* FOOTER */
+/* ======= */
+
+.footer {
+  background-color: var(--footerColor);
+}
+
+.footer-wrapper {
+  color: white;
+  padding: 2em 1em 2em 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-h4,
+.footer-p {
+  color: white;
+}
+
+.footer-social-wrapper {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.footer-social-icon {
+  font-size: 1.5rem;
+  transition: all ease-out 200ms;
+}
+
+.footer-social-icon:hover {
+  transform: scale(1.3);
+}
+
+/* home social icons-BUG */
+.home-social-icon {
+  font-size: 2rem;
+  transition: all ease-out 200ms;
+}
+
+.home-social-icon:hover {
+  color: var(--blueColor);
+  transform: scale(1.3);
 }

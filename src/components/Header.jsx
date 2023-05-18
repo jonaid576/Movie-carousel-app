@@ -1,9 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import MobileNav from "./MobileNav"
 
 export default function Header() {
+  const [isActive, setIsActive] = useState(false)
+
+  const handleClick = () => {
+    setIsActive((prevState) => !prevState)
+  }
+
   return (
     <div className="header">
       <div className="header-top">
@@ -11,11 +18,12 @@ export default function Header() {
         <h1 className="header-h1">
           Movie<span>finder</span>
         </h1>
-        <button className="hamburger">
+        <button className="hamburger" onClick={handleClick}>
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
         </button>
+        <MobileNav isActive={isActive} handleClick={handleClick} />
       </div>
 
       <form className="header-form">
@@ -29,5 +37,5 @@ export default function Header() {
         </button>
       </form>
     </div>
-  );
+  )
 }
