@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons"
+import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons"
 
-export default function CarouselItem({ movie, visibleMovie }) {
+export default function CarouselItem({
+  movie,
+  visibleMovie,
+  upcomingMovies,
+  increaseIndex,
+  decreaseIndex,
+}) {
   // console.log(movie);
   return (
     <div
@@ -8,14 +17,33 @@ export default function CarouselItem({ movie, visibleMovie }) {
         movie.id === visibleMovie.id ? "is-active" : null
       }`}
     >
-      <Link to={`/${movie.id}`} className="carousel-link">
-        <div className="carousel-img-div">
+      <div className="carousel-img-div">
+        <Link
+          to={`/${movie.id}`}
+          className="carousel-link"
+          state={upcomingMovies}
+        >
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             className={`carousel-img`}
           ></img>
+        </Link>
+        {/* ARROW BUTTONS FOR CHANGING CAROUSEL */}
+        <div className="arrow-btn-wrapper">
+          <button className="arrow-btn left-arrow-btn" onClick={decreaseIndex}>
+            <FontAwesomeIcon
+              icon={faCircleChevronLeft}
+              className="left-arrow-icon"
+            />
+          </button>
+          <button className="arrow-btn right-arrow-btn" onClick={increaseIndex}>
+            <FontAwesomeIcon
+              icon={faCircleChevronRight}
+              className="right-arrow-icon"
+            />
+          </button>
         </div>
-      </Link>
+      </div>
       <div className="carousel-content">
         {" "}
         <h1 className="carousel-item-h1">{movie.title}</h1>

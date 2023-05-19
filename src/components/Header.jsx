@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import MobileNav from "./MobileNav"
+import { Link, NavLink } from "react-router-dom"
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false)
@@ -16,8 +17,46 @@ export default function Header() {
       <div className="header-top">
         {" "}
         <h1 className="header-h1">
-          Movie<span>finder</span>
+          <Link to="/">
+            Movie<span className="finder-span">finder</span>
+          </Link>
         </h1>
+        <nav className="desktop-nav">
+          <ul>
+            <li>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
+              >
+                Trending
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/popular"
+                className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
+              >
+                Popular
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/toprated"
+                className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
+              >
+                Top rated
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/upcoming"
+                className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
+              >
+                Upcoming
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
         <button className="hamburger" onClick={handleClick}>
           <div className="bar"></div>
           <div className="bar"></div>

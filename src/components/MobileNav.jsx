@@ -18,7 +18,7 @@ export default function MobileNav({ isActive, handleClick }) {
           <Link to="/popular">Popular</Link>
         </li>
         <li onClick={handleClick}>
-          <Link to="/top-rated">Top rated</Link>
+          <Link to="/toprated">Top rated</Link>
         </li>
         <li onClick={handleClick}>
           <Link to="/upcoming">Upcoming</Link>

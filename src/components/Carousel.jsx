@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
-import CarouselItem from "./CarouselItem.jsx";
+import CarouselItem from "./CarouselItem.jsx"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   faCircleChevronLeft,
   faCircleChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+} from "@fortawesome/free-solid-svg-icons"
 
 export default function Carousel() {
-  const [upcomingMovies, setUpcomingMovies] = useState("");
-  const [index, setIndex] = useState(0);
+  const [upcomingMovies, setUpcomingMovies] = useState("")
+  const [index, setIndex] = useState(0)
 
   useEffect(() => {
     fetch(
@@ -18,15 +18,29 @@ export default function Carousel() {
     )
       .then((res) => res.json())
       .then((data) => {
-        setUpcomingMovies(data.results);
-      });
-  }, []);
+        setUpcomingMovies(data.results)
+      })
+  }, [])
 
-  const visbleMovie = upcomingMovies[index];
+  const visbleMovie = upcomingMovies[index]
   //   console.log(visbleMovie);
 
+  const increaseIndex = () => {
+    setIndex((prevIndex) =>
+      prevIndex == upcomingMovies.length - 1 ? 0 : prevIndex + 1
+    )
+    console.log("index increase")
+  }
+
+  const decreaseIndex = () => {
+    setIndex((prevIndex) =>
+      prevIndex == 0 ? upcomingMovies.length - 1 : prevIndex - 1
+    )
+    console.log("index decreased")
+  }
+
   if (!upcomingMovies) {
-    return <h1>Loading...</h1>;
+    return <h1>Loading...</h1>
   }
   return (
     <div className="carousel">
@@ -38,41 +52,14 @@ export default function Carousel() {
                 key={movie.id}
                 movie={movie}
                 visibleMovie={visbleMovie}
+                upcomingMovies={movie}
+                increaseIndex={increaseIndex}
+                decreaseIndex={decreaseIndex}
               />
             </div>
-          );
+          )
         })}
       </div>
-
-      {/* ARROW BUTTONS FOR CHANGING CAROUSEL */}
-      <div className="arrow-btn-wrapper">
-        <button
-          className="arrow-btn left-arrow-btn"
-          onClick={() =>
-            setIndex((prevIndex) =>
-              prevIndex == 0 ? upcomingMovies.length - 1 : prevIndex - 1
-            )
-          }
-        >
-          <FontAwesomeIcon
-            icon={faCircleChevronLeft}
-            className="left-arrow-icon"
-          />
-        </button>
-        <button
-          className="arrow-btn right-arrow-btn"
-          onClick={() =>
-            setIndex((prevIndex) =>
-              prevIndex == upcomingMovies.length - 1 ? 0 : prevIndex + 1
-            )
-          }
-        >
-          <FontAwesomeIcon
-            icon={faCircleChevronRight}
-            className="right-arrow-icon"
-          />
-        </button>
-      </div>
     </div>
-  );
+  )
 }
