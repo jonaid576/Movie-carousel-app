@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react"
+import React, { useLayoutEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
@@ -7,19 +7,36 @@ import { Link } from "react-router-dom"
 export default function MovieDetails() {
   const location = useLocation()
   const selectedMovie = location.state
+  const [loading, setLoading] = useState(true)
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   })
 
-  console.log(selectedMovie)
-  //   console.log(param.id);
-  //   console.log(selectedMovie);
+  setTimeout(() => {
+    setLoading(false)
+  }, 300)
+
+  if (loading) {
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      </>
+    )
+  }
+
+  // console.log(selectedMovie)
   return (
     <div className="movie-details-card">
       <img
         className="movie-details-img"
-        src={`https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`}
+        src={
+          selectedMovie.backdrop_path
+            ? `https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`
+            : `https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`
+        }
         atl={selectedMovie.title}
       ></img>
       <div className="movie-details-content">

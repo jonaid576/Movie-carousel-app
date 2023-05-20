@@ -12,10 +12,16 @@ export default function TopRated() {
       .then((data) => {
         setTopRatedMovies(data.results)
       })
-  })
+  }, [])
 
   if (!topRatedMovies) {
-    return <h1>Loading...</h1>
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      </>
+    )
   }
   return (
     <div className="top-rated">

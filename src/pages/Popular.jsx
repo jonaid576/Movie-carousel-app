@@ -12,10 +12,16 @@ export default function PopularMovies() {
       .then((data) => {
         setPopularMovies(data.results)
       })
-  })
+  }, [])
 
   if (!popularMovies) {
-    return <h1>Loading...</h1>
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      </>
+    )
   }
   return (
     <div className="popular">

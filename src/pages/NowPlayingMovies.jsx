@@ -15,7 +15,13 @@ export default function NowPlayingMovies() {
   }, [])
 
   if (!nowPlayingMovies) {
-    return <h1>Loading...</h1>
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      </>
+    )
   }
   return (
     <div className="now-playing">

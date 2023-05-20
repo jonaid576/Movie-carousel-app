@@ -12,10 +12,16 @@ export default function UpComing() {
       .then((data) => {
         setUpComingMovies(data.results)
       })
-  })
+  }, [])
 
   if (!upComingMovies) {
-    return <h1>Loading...</h1>
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      </>
+    )
   }
   return (
     <div className="upcoming">

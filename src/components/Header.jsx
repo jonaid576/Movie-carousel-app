@@ -7,6 +7,7 @@ import { Link, NavLink } from "react-router-dom"
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false)
+  const [query, setQuery] = useState("")
 
   const handleClick = () => {
     setIsActive((prevState) => !prevState)
@@ -70,10 +71,14 @@ export default function Header() {
           className="header-input"
           type="search"
           placeholder="Search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
         ></input>
-        <button type="submit" className="btn submit-btn">
-          <FontAwesomeIcon icon={faSearch} className="search-icon" />
-        </button>
+        <Link to={`/searched-movies/${query.replace(/ /g, "-")}`} state={query}>
+          <button type="submit" className="btn submit-btn">
+            <FontAwesomeIcon icon={faSearch} className="search-icon" />
+          </button>
+        </Link>
       </form>
     </div>
   )
