@@ -281,7 +281,7 @@ a {
   justify-content: space-between;
   position: absolute;
   width: 100%;
-  top: 45%;
+  top: 38%;
 }
 
 .arrow-btn {
@@ -294,7 +294,7 @@ a {
 .left-arrow-icon,
 .right-arrow-icon {
   color: white;
-  font-size: 3rem;
+  font-size: 7rem;
   opacity: 0.3;
 }
 
@@ -530,6 +530,25 @@ a {
   transform: scale(1.3);
 }
 
+.footer-p {
+  margin-bottom: 1em;
+}
+
+.attribution {
+  width: 100%;
+}
+
+/* .attribution-img {
+  width: 50%;
+  background-color: magenta;
+  padding: 1em;
+} */
+
+.movie-db-logo {
+  display: inline;
+  width: 20%;
+}
+
 /* ERROR PAGE*/
 /* ========== */
 
@@ -604,7 +623,7 @@ a {
 
   .carousel {
     max-width: 100%;
-    margin-bottom: 7em;
+    margin-bottom: 10em;
   }
 
   .carousel-item.is-active {
@@ -624,7 +643,7 @@ a {
     top: 102%;
     bottom: 0;
     max-width: 150px;
-    left: 35%;
+    left: 34%;
   }
   .carousel-content {
     width: 30%;

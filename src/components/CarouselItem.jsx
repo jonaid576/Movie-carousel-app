@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCircleChevronLeft } from "@fortawesome/free-solid-svg-icons"
-import { faCircleChevronRight } from "@fortawesome/free-solid-svg-icons"
+import { faCaretLeft } from "@fortawesome/free-solid-svg-icons"
+import { faCaretRight } from "@fortawesome/free-solid-svg-icons"
 
 export default function CarouselItem({
   movie,
@@ -31,16 +31,10 @@ export default function CarouselItem({
         {/* ARROW BUTTONS FOR CHANGING CAROUSEL */}
         <div className="arrow-btn-wrapper">
           <button className="arrow-btn left-arrow-btn" onClick={decreaseIndex}>
-            <FontAwesomeIcon
-              icon={faCircleChevronLeft}
-              className="left-arrow-icon"
-            />
+            <FontAwesomeIcon icon={faCaretLeft} className="left-arrow-icon" />
           </button>
           <button className="arrow-btn right-arrow-btn" onClick={increaseIndex}>
-            <FontAwesomeIcon
-              icon={faCircleChevronRight}
-              className="right-arrow-icon"
-            />
+            <FontAwesomeIcon icon={faCaretRight} className="right-arrow-icon" />
           </button>
         </div>
       </div>
