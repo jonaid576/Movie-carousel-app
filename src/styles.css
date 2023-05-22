@@ -270,6 +270,8 @@ a {
 
 .carousel-img-div {
   position: relative;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .carousel-img {
@@ -391,7 +393,8 @@ a {
 .top-rated-movie-card,
 .popular-movie-card,
 .searched-movie-card {
-  max-width: 40%;
+  width: 40%;
+  max-width: 250px;
 }
 
 .now-playing-img,
@@ -640,15 +643,15 @@ a {
   }
 
   .carousel-img-div {
-    width: 50%;
-    max-width: 500px;
+    margin: 0;
+    max-width: 300px;
   }
 
   .arrow-btn-wrapper {
     top: 102%;
     bottom: 0;
     max-width: 150px;
-    left: 34%;
+    left: 25%;
   }
   .carousel-content {
     width: 30%;
@@ -692,11 +695,19 @@ a {
     font-size: 2rem;
   }
 
+  /* .now-playing-img,
+  .upcoming-img,
+  .top-rated-img,
+  .popular-img,
+  .searched-img {
+    max-width: 250px;
+  } */
+
   .now-playing-movie-card,
   .upcoming-movie-card,
   .top-rated-movie-card,
   .popular-movie-card {
-    max-width: 380px;
+    max-width: 250px;
   }
 
   /* .now-playing-img,
