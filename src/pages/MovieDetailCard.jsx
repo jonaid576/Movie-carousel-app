@@ -2,12 +2,14 @@ import React, { useLayoutEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
-import { Link } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
-export default function MovieDetails() {
+const MovieDetails = () => {
   const location = useLocation()
   const selectedMovie = location.state
   const [loading, setLoading] = useState(true)
+
+  const navigate = useNavigate()
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -59,14 +61,13 @@ export default function MovieDetails() {
           <h3 className="synopsis">Synopsis</h3>
           <p className="synopsis-p">{selectedMovie.overview}</p>
         </div>
-        <button className="back-btn">
-          {" "}
-          <Link to=".." relative="path">
-            <FontAwesomeIcon icon={faCircleArrowLeft} className="back-icon" />{" "}
-            Go Back
-          </Link>
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          <FontAwesomeIcon icon={faCircleArrowLeft} className="back-icon" /> Go
+          Back
         </button>
       </div>
     </div>
   )
 }
+
+export default MovieDetails

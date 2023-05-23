@@ -2,12 +2,6 @@ import { useEffect, useState } from "react"
 
 import CarouselItem from "./CarouselItem.jsx"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faCircleChevronLeft,
-  faCircleChevronRight,
-} from "@fortawesome/free-solid-svg-icons"
-
 export default function Carousel() {
   const [upcomingMovies, setUpcomingMovies] = useState("")
   const [index, setIndex] = useState(0)
@@ -40,14 +34,20 @@ export default function Carousel() {
   }
 
   if (!upcomingMovies) {
-    return <h1>Loading...</h1>
+    return (
+      <>
+        <div className="loader-container">
+          <div className="spinner"></div>
+        </div>
+      </>
+    )
   }
   return (
     <div className="carousel">
       <div>
         {upcomingMovies.map((movie) => {
           return (
-            <div className="carousel-container">
+            <div className="carousel-container" key={movie.id}>
               <CarouselItem
                 key={movie.id}
                 movie={movie}

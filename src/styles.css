@@ -38,6 +38,28 @@ a {
   color: inherit;
 }
 
+/* SCROLLBAR */
+/* =========== */
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--blackHeader);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blueHeader);
+}
+
+@supports (scrollbar-color: red black) {
+  * {
+    scrollbar-color: var(--blueHeader) var(--blackHeader);
+    scrollbar-width: thin;
+  }
+}
+
 /* LOADER ANIMATION */
 /* ============ */
 
@@ -487,6 +509,7 @@ a {
   background: none;
   border: none;
   color: gray;
+  cursor: pointer;
 }
 
 .back-icon {

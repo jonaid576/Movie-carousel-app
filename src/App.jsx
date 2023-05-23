@@ -10,8 +10,6 @@ import PageNotFound from "./components/PageNotFound"
 
 import Error from "./components/Error"
 
-// import { BrowserRouter, Routes, Route } from "react-router-dom"
-
 import {
   RouterProvider,
   createBrowserRouter,
@@ -41,7 +39,12 @@ function App() {
     )
   )
 
-  return <RouterProvider router={router} />
+  return (
+    <>
+      {" "}
+      <RouterProvider router={router} />
+    </>
+  )
 }
 
 export default App
