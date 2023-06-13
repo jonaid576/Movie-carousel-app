@@ -1,33 +1,26 @@
-import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import useFetch from "../useFetch"
+import LoadingSpin from "../components/LoadingSpin"
+import Error from "../components/Error"
 
 export default function NowPlayingMovies() {
-  const [nowPlayingMovies, setNowPlayingMovies] = useState("")
+  const [loading, error, data] = useFetch(
+    "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=6af31bc37cbb2436640ecaf1e1265fdc"
+  )
 
-  useEffect(() => {
-    fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1&api_key=6af31bc37cbb2436640ecaf1e1265fdc"
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setNowPlayingMovies(data.results)
-      })
-  }, [])
-
-  if (!nowPlayingMovies) {
-    return (
-      <>
-        <div className="loader-container">
-          <div className="spinner"></div>
-        </div>
-      </>
-    )
+  if (loading) {
+    return <LoadingSpin />
   }
+
+  if (error) {
+    return <Error />
+  }
+
   return (
-    <div className="now-playing">
+    <section className="now-playing">
       <h1 className="now-playing-h1">Trending Movies</h1>
       <div className="now-playing-movies-wrapper">
-        {nowPlayingMovies.map((movie) => {
+        {data.results.map((movie) => {
           return (
             <div className="now-playing-movie-card" key={movie.id}>
               <Link to={`${movie.id}`} state={movie}>
@@ -45,6 +38,6 @@ export default function NowPlayingMovies() {
           )
         })}
       </div>
-    </div>
+    </section>
   )
 }

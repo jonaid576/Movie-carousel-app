@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom"
 const MovieDetails = () => {
   const location = useLocation()
   const selectedMovie = location.state
-  const [loading, setLoading] = useState(true)
 
   const navigate = useNavigate()
 
@@ -15,21 +14,6 @@ const MovieDetails = () => {
     window.scrollTo(0, 0)
   })
 
-  setTimeout(() => {
-    setLoading(false)
-  }, 300)
-
-  if (loading) {
-    return (
-      <>
-        <div className="loader-container">
-          <div className="spinner"></div>
-        </div>
-      </>
-    )
-  }
-
-  // console.log(selectedMovie)
   return (
     <div className="movie-details-card">
       <img

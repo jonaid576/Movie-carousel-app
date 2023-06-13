@@ -1,45 +1,49 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import Error from "../components/Error"
+import LoadingSpin from "../components/LoadingSpin"
+import useFetch from "../useFetch"
+import { useGlobalContext } from "../context"
 
 export default function SearchedMovies() {
-  const [searchedMovies, setSearchedMovies] = useState("")
-  const param = useParams()
-  //   console.log(param)
+  const { query } = useGlobalContext()
 
-  useEffect(() => {
-    fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=6af31bc37cbb2436640ecaf1e1265fdc&query=${param.query.replace(
-        /-/g,
-        " "
-      )}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setSearchedMovies(data.results)
-      })
-  }, [param.query])
+  const [loading, error, data] = useFetch(
+    `https://api.themoviedb.org/3/search/movie?api_key=6af31bc37cbb2436640ecaf1e1265fdc&query=${query}`,
+    query
+  )
 
-  if (!searchedMovies) {
+  if (loading) {
+    return <LoadingSpin />
+  }
+
+  if (error) {
+    return <Error />
+  }
+
+  if (data.results.length < 1) {
     return (
-      <>
-        <div className="loader-container">
-          <div className="spinner"></div>
-        </div>
-      </>
+      <section className="searched-movies">
+        <h1 className="searched-movie-h1">
+          no results were found for "{query}"
+        </h1>
+      </section>
     )
   }
+
   return (
-    <div className="searched-movies">
-      <h1 className="searched-movie-h1">
-        Search results for "{param.query.replace(/-/g, " ")}"
-      </h1>
+    <section className="searched-movies">
+      <h1 className="searched-movie-h1">Search results for "{query}"</h1>
       <div className="searched-movies-wrapper">
-        {searchedMovies
+        {data.results
           .filter((movie) => movie.poster_path)
           .map((movie) => {
             return (
               <div className="searched-movie-card" key={movie.id}>
-                <Link to={`${movie.id}`} state={movie}>
+                <Link
+                  to={`/searched-movies/${query}/${movie.id}`}
+                  state={movie}
+                >
                   {" "}
                   <img
                     className="searched-img"
@@ -55,6 +59,6 @@ export default function SearchedMovies() {
             )
           })}
       </div>
-    </div>
+    </section>
   )
 }

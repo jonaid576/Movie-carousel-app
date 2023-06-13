@@ -7,66 +7,37 @@ import PopularMovies from "./pages/Popular"
 import MovieDetailCard from "./pages/MovieDetailCard"
 import SearchedMovies from "./pages/SearchedMovies"
 import PageNotFound from "./components/PageNotFound"
-
-import Error from "./components/Error"
-
-import {
-  RouterProvider,
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 function App() {
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <Route path="/" element={<AppLayout />} errorElement={<Error />}>
-        <Route index element={<HomePage />} />
-        <Route path="/searched-movies/:query" element={<SearchedMovies />} />
-        <Route
-          path="searched-movies/:query/:id"
-          element={<MovieDetailCard />}
-        />
-        <Route path="/:id" element={<MovieDetailCard />} />
-        <Route path="/popular" element={<PopularMovies />} />
-        <Route path="/popular/:id" element={<MovieDetailCard />} />
-        <Route path="/upcoming" element={<UpComing />} />
-        <Route path="/upcoming/:id" element={<MovieDetailCard />} />
-        <Route path="/toprated" element={<TopRated />} />
-        <Route path="/toprated/:id" element={<MovieDetailCard />} />
-        <Route path="*" element={<PageNotFound />} />
-      </Route>
-    )
-  )
-
   return (
     <>
-      {" "}
-      <RouterProvider router={router} />
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="popular" element={<PopularMovies />} />
+            <Route path="upcoming" element={<UpComing />} />
+            <Route path="toprated" element={<TopRated />} />
+            <Route path="searched-movies/:query" element={<SearchedMovies />} />
+          </Route>
+          <Route
+            path="/searched-movies/:query/:id"
+            element={<MovieDetailCard />}
+          />
+          <Route path="/:id" element={<MovieDetailCard />} />
+          <Route path="popular/:id" element={<MovieDetailCard />} />
+          <Route path="upcoming/:id" element={<MovieDetailCard />} />
+          <Route path="toprated/:id" element={<MovieDetailCard />} />
+          <Route path="*" element={<PageNotFound />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   )
 }
 
 export default App
-
-// <BrowserRouter>
-//   <Routes>
-// <Route path="/" element={<AppLayout />}>
-//   <Route index element={<HomePage />} />
-//   <Route path="/searched-movies/:query" element={<SearchedMovies />} />
-//   <Route
-//     path="searched-movies/:query/:id"
-//     element={<MovieDetailCard />}
-//   />
-//   <Route path="/:id" element={<MovieDetailCard />} />
-//   <Route path="/popular" element={<PopularMovies />} />
-//   <Route path="/popular/:id" element={<MovieDetailCard />} />
-//   <Route path="/upcoming" element={<UpComing />} />
-//   <Route path="/upcoming/:id" element={<MovieDetailCard />} />
-//   <Route path="/toprated" element={<TopRated />} />
-//   <Route path="/toprated/:id" element={<MovieDetailCard />} />
-
-//   <Route path="*" element={<PageNotFound />} />
-// </Route>
-//   </Routes>
-// </BrowserRouter>

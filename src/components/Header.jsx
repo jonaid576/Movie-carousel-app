@@ -1,30 +1,33 @@
 import React, { useState } from "react"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import MobileNav from "./MobileNav"
 import { Link, NavLink } from "react-router-dom"
+import Form from "./Form"
+import { useGlobalContext } from "../context"
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false)
-  const [query, setQuery] = useState("")
+  const { setQuery } = useGlobalContext()
 
   const handleClick = () => {
     setIsActive((prevState) => !prevState)
+  }
+
+  const handleNavLinkClick = () => {
+    setQuery("")
   }
 
   return (
     <div className="header">
       <div className="header-top">
         {" "}
-        <h1 className="header-h1">
+        <h1 className="header-h1" onClick={() => setQuery("")}>
           <Link to="/">
             Movie<span className="finder-span">finder</span>
           </Link>
         </h1>
         <nav className="desktop-nav">
           <ul>
-            <li>
+            <li onClick={handleNavLinkClick}>
               <NavLink
                 to="/"
                 className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
@@ -32,7 +35,7 @@ export default function Header() {
                 Trending
               </NavLink>
             </li>
-            <li>
+            <li onClick={handleNavLinkClick}>
               <NavLink
                 to="/popular"
                 className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
@@ -40,7 +43,7 @@ export default function Header() {
                 Popular
               </NavLink>
             </li>
-            <li>
+            <li onClick={handleNavLinkClick}>
               <NavLink
                 to="/toprated"
                 className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
@@ -48,7 +51,7 @@ export default function Header() {
                 Top rated
               </NavLink>
             </li>
-            <li>
+            <li onClick={handleNavLinkClick}>
               <NavLink
                 to="/upcoming"
                 className={({ isActive }) => (isActive ? "ds-nav-active" : "")}
@@ -63,23 +66,12 @@ export default function Header() {
           <div className="bar"></div>
           <div className="bar"></div>
         </button>
-        <MobileNav isActive={isActive} handleClick={handleClick} />
+        <MobileNav
+          isActive={isActive}
+          handleClick={handleClick}
+          handleNavLinkClick={handleNavLinkClick}
+        />
       </div>
-
-      <form className="header-form">
-        <input
-          className="header-input"
-          type="search"
-          placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-        ></input>
-        <Link to={`/searched-movies/${query.replace(/ /g, "-")}`} state={query}>
-          <button type="submit" className="btn submit-btn">
-            <FontAwesomeIcon icon={faSearch} className="search-icon" />
-          </button>
-        </Link>
-      </form>
     </div>
   )
 }

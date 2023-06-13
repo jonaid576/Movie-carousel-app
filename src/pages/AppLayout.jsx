@@ -1,14 +1,12 @@
-import Header from "../components/Header"
-import Footer from "../components/Footer"
 import React from "react"
 import { Outlet } from "react-router-dom"
+import Form from "../components/Form"
 
 export default function AppLayout() {
   return (
     <>
-      <Header />
+      <Form />
       {<Outlet />}
-      <Footer />
     </>
   )
 }
