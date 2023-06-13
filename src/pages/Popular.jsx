@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import Error from "../components/Error"
 import LoadingSpin from "../components/LoadingSpin"
 import { useGlobalContext } from "../context"
 import useFetch from "../useFetch"
 import SearchedMovies from "./SearchedMovies"
+import { MovieCard } from "../components/MovieCard"
 
 export default function PopularMovies() {
   const { query } = useGlobalContext()
@@ -26,22 +25,8 @@ export default function PopularMovies() {
         <h1 className="popular-movie-h1">Popular movies</h1>
         <div className="popular-movies-wrapper">
           {data.results.map((movie) => {
-            return (
-              <div className="popular-movie-card" key={movie.id}>
-                <Link to={`${movie.id}`} state={movie}>
-                  {" "}
-                  <img
-                    className="popular-img"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  ></img>
-                  <h3 className="popular-h3">{movie.title}</h3>
-                  <p className="popular-p">
-                    ({movie.release_date.split("-")[0]})
-                  </p>
-                </Link>
-              </div>
-            )
+            const { id } = movie
+            return <MovieCard key={id} movie={movie} />
           })}
         </div>
       </div>

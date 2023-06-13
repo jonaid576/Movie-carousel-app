@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
 import Error from "../components/Error"
 import LoadingSpin from "../components/LoadingSpin"
 import useFetch from "../useFetch"
 import { useGlobalContext } from "../context"
+import { MovieCard } from "../components/MovieCard"
 
 export default function SearchedMovies() {
   const { query } = useGlobalContext()
@@ -38,25 +37,8 @@ export default function SearchedMovies() {
         {data.results
           .filter((movie) => movie.poster_path)
           .map((movie) => {
-            return (
-              <div className="searched-movie-card" key={movie.id}>
-                <Link
-                  to={`/searched-movies/${query}/${movie.id}`}
-                  state={movie}
-                >
-                  {" "}
-                  <img
-                    className="searched-img"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  ></img>
-                  <h3 className="searched-h3">{movie.title}</h3>
-                  <p className="searched-p">
-                    ({movie.release_date.split("-")[0]})
-                  </p>
-                </Link>
-              </div>
-            )
+            const { id } = movie
+            return <MovieCard key={id} movie={movie} />
           })}
       </div>
     </section>

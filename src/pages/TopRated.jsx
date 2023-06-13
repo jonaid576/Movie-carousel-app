@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import Error from "../components/Error"
 import LoadingSpin from "../components/LoadingSpin"
 import { useGlobalContext } from "../context"
 import useFetch from "../useFetch"
 import SearchedMovies from "./SearchedMovies"
+import { MovieCard } from "../components/MovieCard"
 
 export default function TopRated() {
   const { query } = useGlobalContext()
@@ -27,22 +26,8 @@ export default function TopRated() {
         <h1 className="top-rated-movie-h1">Top Rated movies</h1>
         <div className="top-rated-movies-wrapper">
           {data.results.map((movie) => {
-            return (
-              <div className="top-rated-movie-card" key={movie.id}>
-                <Link to={`${movie.id}`} state={movie}>
-                  {" "}
-                  <img
-                    className="top-rated-img"
-                    src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                    alt={movie.title}
-                  ></img>
-                  <h3 className="top-rated-h3">{movie.title}</h3>
-                  <p className="top-rated-p">
-                    ({movie.release_date.split("-")[0]})
-                  </p>
-                </Link>
-              </div>
-            )
+            const { id } = movie
+            return <MovieCard key={id} movie={movie} />
           })}
         </div>
       </div>
