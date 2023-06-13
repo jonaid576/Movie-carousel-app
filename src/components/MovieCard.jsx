@@ -13,6 +13,7 @@ export function MovieCard({ movie }) {
         block: "center",
       })
     }
+    setMarkerItem("")
   })
 
   return (
