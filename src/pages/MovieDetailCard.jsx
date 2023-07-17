@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faStar, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const MovieDetails = () => {
   const location = useLocation()
@@ -10,9 +11,9 @@ const MovieDetails = () => {
 
   const navigate = useNavigate()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0)
-  })
+  }, [])
 
   return (
     <div className="movie-details-card">

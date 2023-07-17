@@ -6,7 +6,7 @@ import { useGlobalContext } from "../context"
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false)
-  const { setQuery } = useGlobalContext()
+  const { setQuery, setMarkerItem } = useGlobalContext()
 
   const handleClick = () => {
     setIsActive((prevState) => !prevState)
@@ -21,7 +21,7 @@ export default function Header() {
       <div className="header-top">
         {" "}
         <h1 className="header-h1" onClick={() => setQuery("")}>
-          <Link to="/">
+          <Link to="/" onClick={() => setMarkerItem("")}>
             Movie<span className="finder-span">finder</span>
           </Link>
         </h1>

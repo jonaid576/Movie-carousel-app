@@ -8,6 +8,10 @@
   --transition: all linear 0.3s;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -22,6 +26,7 @@ body {
   font-family: "Montserrat", sans-serif;
   background-color: var(--blackHeader);
   color: white;
+  position: relative;
 }
 
 p {
@@ -636,6 +641,19 @@ a {
   background-color: white;
 }
 
+/* TOP SCROLL BTN */
+/* ============ */
+
+.top-scroll-icon {
+  z-index: 200;
+  position: fixed;
+  font-size: 2rem;
+  color: var(--blueText);
+  cursor: pointer;
+  top: 90vh;
+  left: 85vw;
+}
+
 @media (min-width: 500px) {
   .now-playing-movies-wrapper,
   .upcoming-movies-wrapper,
@@ -647,6 +665,9 @@ a {
 
 /* FOR LAPTOPS */
 @media (min-width: 900px) {
+  .top-scroll-btn {
+    display: none;
+  }
   /* HEADER */
   /* ======= */
 

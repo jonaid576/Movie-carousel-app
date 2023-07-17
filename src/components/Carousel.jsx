@@ -30,7 +30,7 @@ export default function Carousel() {
       increaseIndex()
     }, 5000)
     return () => clearInterval(intervalId)
-  }, [data])
+  }, [data, index])
 
   if (loading) {
     return <LoadingSpin />
