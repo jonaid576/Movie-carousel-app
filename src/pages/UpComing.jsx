@@ -8,7 +8,9 @@ import { MovieCard } from "../components/MovieCard"
 export default function UpComing() {
   const { query } = useGlobalContext()
   const [loading, error, data] = useFetch(
-    "https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=6af31bc37cbb2436640ecaf1e1265fdc"
+    `https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1&api_key=${
+      import.meta.env.VITE_MOVIE_API_KEY
+    }`
   )
 
   if (loading) {
