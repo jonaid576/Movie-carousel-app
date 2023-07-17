@@ -8,7 +8,9 @@ export default function SearchedMovies() {
   const { query } = useGlobalContext()
 
   const [loading, error, data] = useFetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=6af31bc37cbb2436640ecaf1e1265fdc&query=${query}`,
+    `https://api.themoviedb.org/3/search/movie?api_key=${
+      import.meta.env.VITE_MOVIE_API_KEY
+    }&query=${query}`,
     query
   )
 
