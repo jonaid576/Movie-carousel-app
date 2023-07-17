@@ -2,7 +2,10 @@ import { BsArrowUpSquareFill } from "react-icons/bs"
 
 const TopScrollBtn = () => {
   const scrollToTop = () => {
-    window.scrollTo(0, 0)
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    })
   }
   return (
     <div className="top-scroll-btn" onClick={scrollToTop}>

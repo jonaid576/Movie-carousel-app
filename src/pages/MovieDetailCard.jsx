@@ -13,7 +13,8 @@ const MovieDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+    // console.log("movie detail card mount")
+  })
 
   return (
     <div className="movie-details-card">

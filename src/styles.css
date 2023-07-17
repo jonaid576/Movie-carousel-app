@@ -8,9 +8,9 @@
   --transition: all linear 0.3s;
 }
 
-html {
+/* html {
   scroll-behavior: smooth;
-}
+} */
 
 * {
   box-sizing: border-box;
