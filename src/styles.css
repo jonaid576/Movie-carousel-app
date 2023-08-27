@@ -101,6 +101,16 @@ a {
 /* HEADER */
 /* ======== */
 
+.logo-img {
+  width: 25px;
+}
+.logo-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4em;
+}
+
 .header {
   background-color: var(--blackHeader);
   color: white;
@@ -313,6 +323,8 @@ a {
   position: relative;
   max-width: 300px;
   margin: 0 auto;
+  height: 450px;
+  /* background-color: magenta; */
 }
 
 .carousel-img {
@@ -483,8 +495,15 @@ a {
   max-width: 700px;
 }
 
+/* .movie-details-img-wrapper {
+  background-color: magenta;
+  object-fit: cover;
+} */
+
 .movie-details-img {
   border-radius: 10px;
+  height: 30vh;
+  object-fit: cover;
 }
 
 .movie-details-header {
@@ -500,6 +519,7 @@ a {
   box-shadow: 0 0 4px black;
   margin: 0.5em 0.1em;
   border-radius: 10px;
+  margin-top: -0.5em;
 }
 
 .movie-details-rating {

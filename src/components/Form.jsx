@@ -2,15 +2,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import { useGlobalContext } from "../context"
 import { useNavigate } from "react-router-dom"
+import { useState } from "react"
+import { useMemo } from "react"
 
 const Form = () => {
-  const { query, setQuery } = useGlobalContext()
+  const { query, setQuery, localQuery, setLocalQuery } = useGlobalContext()
   const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     navigate(`/searched-movies/${query.replace(/ /g, "-")}`)
   }
+
+  const debounce = () => {
+    let timeoutId
+    return (e) => {
+      setLocalQuery(e.target.value)
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        setQuery(e.target.value)
+      }, 1000)
+      return () => clearTimeout(timeoutId)
+    }
+  }
+
+  const optimizedDebounce = useMemo(() => debounce(), [])
 
   return (
     <section className="form-container">
@@ -19,8 +35,8 @@ const Form = () => {
           className="header-input"
           type="search"
           placeholder="Search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={optimizedDebounce}
+          value={localQuery}
           required
         />
         <button type="submit" className="btn submit-btn">

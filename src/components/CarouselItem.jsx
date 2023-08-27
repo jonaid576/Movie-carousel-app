@@ -11,7 +11,7 @@ export default function CarouselItem({
 }) {
   // console.log(movie);
   return (
-    <div
+    <article
       className={`carousel-item ${
         movie.id === visibleMovie.id ? "is-active" : null
       }`}
@@ -42,6 +42,6 @@ export default function CarouselItem({
         <h1 className="carousel-item-h1">{movie.title}</h1>
         <p className="carousel-item-p">{movie.overview}</p>
       </div>
-    </div>
+    </article>
   )
 }

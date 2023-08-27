@@ -17,16 +17,18 @@ const MovieDetails = () => {
   })
 
   return (
-    <div className="movie-details-card">
-      <img
-        className="movie-details-img"
-        src={
-          selectedMovie.backdrop_path
-            ? `https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`
-            : `https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`
-        }
-        atl={selectedMovie.title}
-      ></img>
+    <section className="movie-details-card">
+      <div className="movie-details-img-wrapper">
+        <img
+          className="movie-details-img"
+          src={
+            selectedMovie.backdrop_path
+              ? `https://image.tmdb.org/t/p/w500${selectedMovie.backdrop_path}`
+              : `https://image.tmdb.org/t/p/w500${selectedMovie.poster_path}`
+          }
+          alt={selectedMovie.title}
+        />
+      </div>
       <div className="movie-details-content">
         <h3 className="movie-details-header">{selectedMovie.title}</h3>
         <p className="rating-wrapper">
@@ -52,7 +54,7 @@ const MovieDetails = () => {
           Back
         </button>
       </div>
-    </div>
+    </section>
   )
 }
 

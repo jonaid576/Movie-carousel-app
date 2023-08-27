@@ -1,12 +1,13 @@
 import React, { useState } from "react"
 import MobileNav from "./MobileNav"
 import { Link, NavLink } from "react-router-dom"
-import Form from "./Form"
 import { useGlobalContext } from "../context"
+import logoImg from "../assets/film-slate.png"
+// import Form from "./Form"
 
 export default function Header() {
   const [isActive, setIsActive] = useState(false)
-  const { setQuery, setMarkerItem } = useGlobalContext()
+  const { setQuery, setMarkerItem, setLocalQuery } = useGlobalContext()
 
   const handleClick = () => {
     setIsActive((prevState) => !prevState)
@@ -20,11 +21,22 @@ export default function Header() {
     <div className="header">
       <div className="header-top">
         {" "}
-        <h1 className="header-h1" onClick={() => setQuery("")}>
-          <Link to="/" onClick={() => setMarkerItem("")}>
+        {/* logo */}
+        <Link
+          to="/"
+          className="logo-wrapper"
+          onClick={() => {
+            setMarkerItem("")
+            setLocalQuery("")
+            setQuery("")
+          }}
+        >
+          <img src={logoImg} alt="logo" className="logo-img" />
+          <h1 className="header-h1">
+            {" "}
             Movie<span className="finder-span">finder</span>
-          </Link>
-        </h1>
+          </h1>
+        </Link>
         <nav className="desktop-nav">
           <ul>
             <li onClick={handleNavLinkClick}>
